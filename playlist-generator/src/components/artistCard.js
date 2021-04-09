@@ -50,12 +50,7 @@ const ArtistCard = (props) => {
                 <ListGroup className="list-group-flush align-left">
                     <ListGroupItem>Followers: {followers}</ListGroupItem>
                     <ListGroupItem>Generes: {displayGenres}</ListGroupItem>
-                    {/* <ListGroupItem>Populati</ListGroupItem> */}
                 </ListGroup>
-                {/* <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk of
-                    the card's content.
-                </Card.Text> */}
                 <Button variant="primary" type="submit" onClick={(e) => handleOnClick(e)} disabled={disabled}>Add to Artist List</Button>
             </Card.Body>
         </Card>

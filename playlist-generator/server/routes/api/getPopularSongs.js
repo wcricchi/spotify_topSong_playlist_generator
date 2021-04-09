@@ -25,23 +25,24 @@ module.exports = (app) => {
         }
     };
 
-    async function getAccessToken() {
-        return new Promise(function (resolve, reject) {
-            request(options, function (error, response) {
-                if (error) throw new Error(error);
-                resolve(JSON.parse(response.body).access_token)
-            });
-        })
+    // async function getAccessToken() {
+    //     return new Promise(function (resolve, reject) {
+    //         request(options, function (error, response) {
+    //             if (error) throw new Error(error);
+    //             resolve(JSON.parse(response.body).access_token)
+    //         });
+    //     })
 
-    }
+    // }
 
     app.get('/api/getPopularSongs', (req, res) => {
 
         let artistID = req.query.artistID
+        let token = req.query.token
 
         async function getTopTracks() {
-            let accessToken = await getAccessToken()
-            spotifyApi.setAccessToken(accessToken)
+            // let accessToken = await getAccessToken()
+            spotifyApi.setAccessToken(token)
             spotifyApi.getArtistTopTracks(artistID, 'US').then(
                 function (data) {
                     let songArray = data.body.tracks

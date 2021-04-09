@@ -5,12 +5,14 @@ import ArtistList from '../components/artistList'
 import SongList from '../components/songList'
 
 
-const HomePage = () => {
+const HomePage = (props) => {
 
     const [artist, setArtisit] = useState([]);
     const [content, setContent] = useState("");
     const [listOfArtists, setListOfArtists] = useState([])
     const [listOfSongs, setListOfSongs] = useState([])
+
+    const token = props.token;
 
     useEffect(() => {
 
@@ -69,7 +71,7 @@ const HomePage = () => {
         if (artist === "") {
             setContent("")
         } else {
-            fetch(`/api/getArtist?artist=${artist}`, requestOptions)
+            fetch(`/api/getArtist?artist=${artist}&token=${token}`, requestOptions)
                 .then(response => response.json())
                 .then(result => {
                     setContent(result)
@@ -113,7 +115,7 @@ const HomePage = () => {
                 </Col>
                 <Col>
                     <Row className="listOfArtists">
-                        <ArtistList listOfArtists={listOfArtists} handleListRemove={handleListRemove} handleSetListOfSongs={handleSetListOfSongs}></ArtistList>
+                        {listOfArtists.length > 0 && <ArtistList listOfArtists={listOfArtists} handleListRemove={handleListRemove} handleSetListOfSongs={handleSetListOfSongs} token={token}></ArtistList>}
                     </Row>
                     <Row className="listOfSongs">
                         {listOfSongs.length > 0 && <SongList listOfSongs={listOfSongs} handleSetListOfSongsRemove={handleSetListOfSongsRemove} handleClearSongList={handleClearSongList}></SongList>}

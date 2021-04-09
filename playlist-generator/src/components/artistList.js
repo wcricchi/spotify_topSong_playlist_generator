@@ -5,6 +5,7 @@ import { faMinusCircle } from '@fortawesome/free-solid-svg-icons'
 const ArtistList = (props) => {
 
     const artistNameList = props.listOfArtists
+    const token = props.token
 
 
     const handleSubmit = (e) => {
@@ -19,7 +20,7 @@ const ArtistList = (props) => {
         async function getPopularSongs() {
             let songArray = []
             await Promise.all(artistNameList.map(async (artist) => {
-                await fetch(`/api/getPopularSongs?artistID=${artist.artistID}`, requestOptions)
+                await fetch(`/api/getPopularSongs?artistID=${artist.artistID}&token=${token}`, requestOptions)
                 .then(response => response.json())
                 .then(result => {
                     songArray.push(...result)

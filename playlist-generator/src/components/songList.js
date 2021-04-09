@@ -16,6 +16,17 @@ const SongList = (props) => {
         props.handleClearSongList()
     }
 
+    const handleLogIn = (e) => {
+        e.preventDefault();
+    }
+    // const openInNewTab = () => {
+    //     url = 
+    //     const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+    //     if (newWindow) newWindow.opener = null
+    // }
+
+    
+
     return (
         <div>
             <ListGroup>
@@ -30,6 +41,7 @@ const SongList = (props) => {
                     </ListGroup.Item>
                 })}
                 <Button variant="primary" type="delete" className="generateButton" onClick={(e) => handleClear(e)}>Clear List</Button>
+                {/* <Button variant="primary" type="submit" className="generateButton" onClick={() => openInNewTab()}>Login to Spotify</Button> */}
 
             </ListGroup>
         </div>
