@@ -3,13 +3,10 @@ var SpotifyWebApi = require('spotify-web-api-node');
 module.exports = (app) => {
     var spotifyApi = new SpotifyWebApi({
         clientId: 'f5c12e204437479da9efa53d9109b6ca',
-        clientSecret: 'c2867477a87a4331bece88de7512e56d',
         redirectUri: 'http://localhost:3000'
     });
 
     app.post('/api/createPlaylist', (req, res) => {
-
-
         let token = req.query.token
         console.log(req.body)
         let name = req.body.playlistData.name
