@@ -63,7 +63,6 @@ function App() {
             </div>
           )}
           <Switch>
-            {/* {token && <Route path="/" component={HomePage} exact />} */}
             {token && <Route
               path='/'
               render={(props) => (
