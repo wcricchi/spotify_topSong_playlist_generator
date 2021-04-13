@@ -3,6 +3,8 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 import ArtistCard from '../components/artistCard'
 import ArtistList from '../components/artistList'
 import SongList from '../components/songList'
+import PopUp from '../components/popUp'
+
 
 
 const HomePage = (props) => {
@@ -11,6 +13,7 @@ const HomePage = (props) => {
     const [content, setContent] = useState("");
     const [listOfArtists, setListOfArtists] = useState([])
     const [listOfSongs, setListOfSongs] = useState([])
+    const [showPopUp, setShowPopUp] = useState(false);
 
     const token = props.token;
 
@@ -41,13 +44,14 @@ const HomePage = (props) => {
             let songName = song.name
             let songID = song.id
             let songURL = song.external_urls.spotify
+            let songURI = song.uri
             let inList = false
             newSongList.map(existingSong => {
                 if (existingSong.songID === songID) {
                     inList = true;
                 }
             })
-            if (!inList) newSongList.push({ albumName, artistName, songName, songID, songURL })
+            if (!inList) newSongList.push({ albumName, artistName, songName, songID, songURL, songURI })
         })
         setListOfSongs(newSongList)
     }
@@ -83,7 +87,7 @@ const HomePage = (props) => {
     }
 
     return (
-        <Container>
+        <Container className="main-container">
             <Row>
                 <Col>
                     <div>
@@ -115,13 +119,14 @@ const HomePage = (props) => {
                 </Col>
                 <Col>
                     <Row className="listOfArtists">
-                        {listOfArtists.length > 0 && <ArtistList listOfArtists={listOfArtists} handleListRemove={handleListRemove} handleSetListOfSongs={handleSetListOfSongs} token={token}></ArtistList>}
+                        {listOfArtists.length > 0 && <ArtistList listofartists={listOfArtists} handleListRemove={handleListRemove} handleSetListOfSongs={handleSetListOfSongs} token={token}></ArtistList>}
                     </Row>
                     <Row className="listOfSongs">
-                        {listOfSongs.length > 0 && <SongList listOfSongs={listOfSongs} handleSetListOfSongsRemove={handleSetListOfSongsRemove} handleClearSongList={handleClearSongList}></SongList>}
+                        {listOfSongs.length > 0 && <SongList listofsongs={listOfSongs} handleSetListOfSongsRemove={handleSetListOfSongsRemove} handleClearSongList={handleClearSongList} setShowPopUp={setShowPopUp}></SongList>}
                     </Row>
                 </Col>
             </Row>
+            <PopUp show={showPopUp} onHide={() => setShowPopUp(false)} listofsongs={listOfSongs} handleSetListOfSongsRemove={handleSetListOfSongsRemove} token={token}></PopUp>
         </Container>
     )
 }

@@ -4,7 +4,7 @@ import { faMinusCircle } from '@fortawesome/free-solid-svg-icons'
 
 const ArtistList = (props) => {
 
-    const artistNameList = props.listOfArtists
+    const artistNameList = props.listofartists
     const token = props.token
 
 

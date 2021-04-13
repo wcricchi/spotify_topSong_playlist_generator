@@ -40,11 +40,9 @@ function App() {
 
   useEffect(() => {
     let _token = hash.access_token;
-    console.log(_token)
     if (_token) {
       setToken(_token)
     }
-    console.log(token)
   }, [token])
 
 

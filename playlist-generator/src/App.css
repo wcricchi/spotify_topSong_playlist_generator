@@ -28,6 +28,10 @@
   color: #61dafb;
 }
 
+.main-container{
+  margin-bottom: 100px;
+}
+
 .align-left {
   text-align: left;
 }
@@ -69,6 +73,8 @@
 
 .generateButton{
   margin-top: 20px;
+  margin-left: 10px;
+  float: right;
 }
 
 .songArtist{
@@ -95,6 +101,15 @@
   margin-bottom: 50px;
   margin-top: 25px;
 }
+
+.spotifyForm{
+  align-items: left;
+}
+.popUpSongList{
+  overflow: scroll;
+  max-height: 300px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

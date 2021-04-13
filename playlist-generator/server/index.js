@@ -8,6 +8,10 @@ var request = require('request');
 
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({
+  extended: true
+}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(pino).use(cors())
   .use(cookieParser());

@@ -1,7 +1,4 @@
 var SpotifyWebApi = require('spotify-web-api-node');
-var request = require('request');
-
-
 
 module.exports = (app) => {
     var spotifyApi = new SpotifyWebApi({
@@ -10,17 +7,6 @@ module.exports = (app) => {
         redirectUri: 'http://localhost:3000'
     });
 
-    var options = {
-        'method': 'POST',
-        'url': 'https://accounts.spotify.com/api/token',
-        'headers': {
-            'Authorization': 'Basic ZjVjMTJlMjA0NDM3NDc5ZGE5ZWZhNTNkOTEwOWI2Y2E6YzI4Njc0NzdhODdhNDMzMWJlY2U4OGRlNzUxMmU1NmQ=',
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        form: {
-            'grant_type': 'client_credentials'
-        }
-    };
 
     // async function getAccessToken() {
     //     return new Promise(function(resolve, reject) {
