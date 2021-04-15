@@ -1,4 +1,4 @@
-const path = require ('path');
+const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const pino = require('express-pino-logger')();
@@ -23,7 +23,11 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 var stateKey = 'spotify_auth_state';
 var client_id = 'f5c12e204437479da9efa53d9109b6ca'; // Your client id
-var redirect_uri = 'http://localhost:3000'; // Your redirect uri
+if (process.env.NODE_ENV === 'production') {
+  var redirect_uri = 'http://localhost:3001';
+} else {
+   redirect_uri = 'http://localhost:3001'; // Your redirect uri
+}
 
 require('./routes')(app, stateKey, client_id, redirect_uri);
 

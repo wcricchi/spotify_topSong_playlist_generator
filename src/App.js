@@ -12,7 +12,12 @@ import HomePage from './pages/HomePage'
 
 
 const clientId = "f5c12e204437479da9efa53d9109b6ca";
-const redirectUri = "http://localhost:3000";
+var redirectUri = ""
+if (process.env.NODE_ENV === 'production') {
+  redirectUri = 'http://localhost:3001';
+} else {
+  redirectUri = 'http://localhost:3000'; // Your redirect uri
+}
 const scopes = [
   "user-read-private",
   "user-read-email",

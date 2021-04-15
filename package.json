@@ -32,7 +32,8 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "run-p server reactStart",
+    "start": "run-p moveBuild server",
+    "moveBuild": "cp -R build server",
     "reactStart": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
