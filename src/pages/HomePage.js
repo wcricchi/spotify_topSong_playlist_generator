@@ -87,7 +87,7 @@ const HomePage = (props) => {
     }
 
     return (
-        <Container className="main-container">
+        <Container fluid className="main-container">
             <Row>
                 <Col>
                     <div>
@@ -97,7 +97,7 @@ const HomePage = (props) => {
                 </Col>
             </Row>
             <Row>
-                <Col>
+                <Col md={6}>
                     <Form className="align-left" onSubmit={handleSubmit}>
                         <Form.Group controlId="formSearchArtists">
                             <Form.Label>Artist Name</Form.Label>
@@ -117,7 +117,7 @@ const HomePage = (props) => {
                     </Row>
 
                 </Col>
-                <Col>
+                <Col md={6}>
                     <Row className="listOfArtists">
                         {listOfArtists.length > 0 && <ArtistList listofartists={listOfArtists} handleListRemove={handleListRemove} handleSetListOfSongs={handleSetListOfSongs} token={token}></ArtistList>}
                     </Row>
