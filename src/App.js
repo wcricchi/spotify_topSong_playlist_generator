@@ -11,13 +11,7 @@ import {
 import HomePage from './pages/HomePage'
 
 
-const clientId = "f5c12e204437479da9efa53d9109b6ca";
-var redirectUri = ""
-if (process.env.NODE_ENV === 'production') {
-  redirectUri = 'http://localhost:3001';
-} else {
-  redirectUri = 'http://localhost:3000'; // Your redirect uri
-}
+
 const scopes = [
   "user-read-private",
   "user-read-email",
@@ -41,14 +35,23 @@ window.location.hash = "";
 function App() {
 
   const [token, setToken] = useState(false);
-
+  const [origin, setOrigin] = useState("");
 
   useEffect(() => {
+    setOrigin(window.location.origin.toString())
     let _token = hash.access_token;
     if (_token) {
       setToken(_token)
     }
   }, [token])
+
+  const clientId = "f5c12e204437479da9efa53d9109b6ca";
+  var redirectUri = ""
+  if (process.env.NODE_ENV === 'production') {
+    redirectUri = origin;
+  } else {
+    redirectUri = 'http://localhost:3000'; // Your redirect uri
+  }
 
 
   return (
@@ -59,11 +62,11 @@ function App() {
           {!token && (
             <div className="loginButton">
               <header className="headerText">Welcome to Popular Songs Playlist Generator!</header>
-            <a
-              className="btn btn-success"
-              href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`}
-            >
-              Login to Spotify
+              <a
+                className="btn btn-success"
+                href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`}
+              >
+                Login to Spotify
             </a>
             </div>
           )}
