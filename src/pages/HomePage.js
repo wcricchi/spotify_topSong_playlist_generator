@@ -4,6 +4,8 @@ import ArtistCard from '../components/artistCard'
 import ArtistList from '../components/artistList'
 import SongList from '../components/songList'
 import PopUp from '../components/popUp'
+import SuccessPopUp from '../components/successPopUp'
+
 
 
 
@@ -14,6 +16,9 @@ const HomePage = (props) => {
     const [listOfArtists, setListOfArtists] = useState([])
     const [listOfSongs, setListOfSongs] = useState([])
     const [showPopUp, setShowPopUp] = useState(false);
+    const [showSuccessPopUp, setShowSuccessPopUp] = useState(false);
+    const [playlistLink, setPlaylistLink] = useState("")
+
 
     const token = props.token;
 
@@ -88,11 +93,11 @@ const HomePage = (props) => {
 
     return (
         <Container fluid className="main-container">
-            <Row>
+            <Row className="App-header">
                 <Col>
                     <div>
                         <h1>Spotify Playlist Generator</h1>
-                        <h3>Create Playlist with top songs from list of Artists</h3>
+                        <h3>Create Playlist With Top Ten Songs From List Of Artists</h3>
                     </div>
                 </Col>
             </Row>
@@ -126,7 +131,8 @@ const HomePage = (props) => {
                     </Row>
                 </Col>
             </Row>
-            <PopUp show={showPopUp} onHide={() => setShowPopUp(false)} listofsongs={listOfSongs} handleSetListOfSongsRemove={handleSetListOfSongsRemove} token={token}></PopUp>
+            <PopUp show={showPopUp} onHide={() => setShowPopUp(false)} listofsongs={listOfSongs} handleSetListOfSongsRemove={handleSetListOfSongsRemove} setShowSuccessPopUp={setShowSuccessPopUp} setPlaylistLink={setPlaylistLink} token={token}></PopUp>
+            <SuccessPopUp show={showSuccessPopUp} onHide={() => setShowSuccessPopUp(false)} playlistLink={playlistLink}></SuccessPopUp>
         </Container>
     )
 }

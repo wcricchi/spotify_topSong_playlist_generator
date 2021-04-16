@@ -31,7 +31,7 @@ const SongList = (props) => {
                 })}
                 <div className="songListButtons">
                 <Button variant="primary" type="delete" className="generateButton" onClick={(e) => handleClear(e)}>Clear List</Button>
-                <Button variant="success" type="submit" className="generateButton" onClick={() => props.setShowPopUp(true)}>Create Playlist</Button>
+                <Button variant="success" type="submit" className="generateButton spotifyButton" onClick={() => props.setShowPopUp(true)}>Create Playlist</Button>
                 </div>
             </ListGroup>
         </div>

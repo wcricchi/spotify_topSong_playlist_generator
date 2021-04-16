@@ -25,7 +25,7 @@ module.exports = (app, stateKey, client_id, redirect_uri) => {
                 spotifyApi.createPlaylist(name, options).then(
                     function (data) {
                         console.log(data.body)
-                        resolve(data.body.id)
+                        resolve(data.body)
                     },
                     function (err) {
                         throw new Error(err)
@@ -35,14 +35,14 @@ module.exports = (app, stateKey, client_id, redirect_uri) => {
         }
 
         async function addSongs() {
-            let playlistID = await createPlaylist()
+            let playlist = await createPlaylist()
             spotifyApi.addTracksToPlaylist(
-                playlistID,
+                playlist.id,
                 req.body.songs.uris
             ).then(
                 function (data) {
                     console.log(data.body)
-                    res.send(data)
+                    res.send(playlist)
                 },
                 function (err) {
                     console.error(err);

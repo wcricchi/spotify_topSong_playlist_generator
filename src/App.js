@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import './App.scss';
+//import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useEffect } from "react";
 import {
@@ -63,7 +63,7 @@ function App() {
             <div className="loginButton">
               <header className="headerText">Welcome to Popular Songs Playlist Generator!</header>
               <a
-                className="btn btn-success"
+                className="btn spotifyButton"
                 href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`}
               >
                 Login to Spotify

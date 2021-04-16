@@ -10,7 +10,7 @@ const PopUp = (props) => {
 
     const { value: name, bind: bindName, reset: resetName } = useInput('');
     const { value: description, bind: bindDescription, reset: resetDescription } = useInput('');
-    // const [isPublic, setisPublic] = useState(false);
+    const [showPopUp, setShowPopUp] = useState(true);
 
     const listOfSongs = props.listofsongs
     const token = props.token
@@ -46,15 +46,18 @@ const PopUp = (props) => {
             })
         };
 
-        console.log(requestOptions.body)
-
-
         fetch(`/api/createPlaylist?token=${token}`, requestOptions)
             .then(response => response.json())
             .then(result => {
+                props.setPlaylistLink(result.external_urls.spotify)
                 console.log(result)
+                props.onHide();
+                props.setShowSuccessPopUp(true)
             })
-            .catch(error => console.log('error', error));
+            .catch(error => {
+                console.log('error', error)
+                //Show error dialog TODO
+            });
 
         resetName();
         resetDescription();
@@ -91,7 +94,7 @@ const PopUp = (props) => {
                     <ListGroup className="popUpSongList">
                             {listOfSongs && listOfSongs.map((song) => {
                                 return <ListGroup.Item key={song.songID}>
-                                    <div class="songArtist">{song.artistName}, {song.albumName}</div>
+                                    <div className="songArtist">{song.artistName}, {song.albumName}</div>
                                     <div>
                                         {song.songName}
                                         <FontAwesomeIcon className="deleteButton" icon={faMinusCircle} onClick={(e) => removeSong(e, song.songID, song.songName)} />
@@ -104,10 +107,11 @@ const PopUp = (props) => {
                 </Row>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="success" type="submit" onClick={(e) => handleSubmit(e)}>Create Playlist</Button>
+                <Button className="spotifyButton" variant="success" type="submit" onClick={(e) => handleSubmit(e)}>Create Playlist</Button>
                 <Button onClick={props.onHide}>Close</Button>
             </Modal.Footer>
         </Modal>
+        
     )
 }
 

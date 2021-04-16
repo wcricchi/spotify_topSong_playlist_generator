@@ -11,8 +11,19 @@ const ArtistCard = (props) => {
     const followers = props.artist.followers.total
     const genres = props.artist.genres
     const generesLen = genres.length
+
+    const formatGenre = (genre) => {
+        const words = genre.split(" ")
+        for (let i = 0; i < words.length; i++) {
+            words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+        }
+        return words.join(" ")
+    }
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
     const displayGenres = genres.map((genre, i) => {
-        return <>{genre}{i < generesLen - 1 ? ", " : ""}</>
+        return <>{formatGenre(genre)}{i < generesLen - 1 ? ", " : ""}</>
     })
 
     const [disabled, setDisabled] = useState(false);
@@ -48,8 +59,8 @@ const ArtistCard = (props) => {
             <Card.Body>
                 <Card.Title>{artistName}</Card.Title>
                 <ListGroup className="list-group-flush align-left">
-                    <ListGroupItem>Followers: {followers}</ListGroupItem>
-                    <ListGroupItem>Generes: {displayGenres}</ListGroupItem>
+                    <ListGroupItem>Followers: {numberWithCommas(followers)}</ListGroupItem>
+                    <ListGroupItem>Genres: {displayGenres}</ListGroupItem>
                 </ListGroup>
                 <Button variant="primary" type="submit" onClick={(e) => handleOnClick(e)} disabled={disabled}>Add to Artist List</Button>
             </Card.Body>
